@@ -1,0 +1,13 @@
+auth:
+  - user: $SMB_USER
+    group: $SMB_USER
+    uid: 1000
+    gid: 1000
+    password: $SMB_PASS
+
+share:
+  - name: share
+    path: /share
+    browsable: yes
+    readonly: no
+    guestok: no

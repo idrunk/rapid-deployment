@@ -1,0 +1,26 @@
+services:
+  frps:
+    container_name: frps
+    image: theanony/frp:0.60.0
+    restart: unless-stopped
+    ports:
+      - $FRP_SERVER_PORT:$FRP_SERVER_PORT/udp
+      - $FRP_SERVER_WEB_PORT:$FRP_SERVER_WEB_PORT
+      - ${BASE_PORT}00-${BASE_PORT}19:${BASE_PORT}00-${BASE_PORT}19
+      - ${BASE_PORT}50-${BASE_PORT}99:${BASE_PORT}50-${BASE_PORT}99
+    environment:
+      - FRP_SERVER_PORT=$FRP_SERVER_PORT
+      - FRP_TOKEN=$FRP_TOKEN
+      - FRP_SERVER_WEB_PORT=$FRP_SERVER_WEB_PORT
+      - FRP_SERVER_WEB_USER=$FRP_SERVER_WEB_USER
+      - FRP_SERVER_WEB_PASSWORD=$FRP_SERVER_WEB_PASSWORD
+    volumes:
+      - ./frps.toml:/frp/config.toml
+    entrypoint: ["./frps", "-c", "config.toml"]
+  fpmu:
+    container_name: fpmu
+    image: theanony/frp:0.60.0
+    restart: unless-stopped
+    volumes:
+      - ./tokens:/frp/tokens
+    entrypoint: ["./fp-multiuser", "-l", "0.0.0.0:7200", "-f", "tokens"]

@@ -1,0 +1,31 @@
+services:
+  prometheus:
+    restart: unless-stopped
+    image: prom/prometheus:v2.53.1
+    container_name: prometheus
+    volumes:
+      - ./prometheus/config:/etc/prometheus
+      - ./prometheus/data:/prometheus
+    ports:
+      - $PROMETHUES_PORT:9090
+    command:
+      - --config.file=/etc/prometheus/config$PROMETHUES_CONF_MARK.yml
+      - --web.enable-lifecycle
+      # - --web.enable-admin-api
+    user: root
+    networks:
+      - zwnet
+  grafana:
+    restart: unless-stopped
+    image: grafana/grafana:11.1.1
+    container_name: grafana
+    volumes:
+     - ./grafana/data:/var/lib/grafana
+    ports:
+     - '$GRAFANA_PORT:3000'
+    user: root
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

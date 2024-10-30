@@ -1,0 +1,6 @@
+[mysqld]
+sql_mode = 'NO_ENGINE_SUBSTITUTION'
+max_connections = 1024
+max_allowed_packet = 1048576000
+group_concat_max_len = 8192
+default-time-zone = '+8:00'

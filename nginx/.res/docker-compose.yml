@@ -1,0 +1,16 @@
+services:
+  nginx:
+    restart: always
+    container_name: nginx
+    image: nginx:1.27-alpine
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d/:/etc/nginx/conf.d/:ro
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

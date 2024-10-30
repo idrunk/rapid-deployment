@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: node-exporter
+  name: node-exporter
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: node-exporter
+  template:
+    metadata:
+      labels:
+        app: node-exporter
+    spec:
+      hostNetwork: true
+      hostPID: true
+      containers:
+      - image:  prom/node-exporter:v1.8.2
+        args:
+        - "--path.rootfs=/host"
+        - "--web.listen-address=:9090"
+        name: node-exporter
+        ports:
+        - containerPort: 9090
+          name: scrape
+        resources:
+          requests:
+            memory: 30Mi
+            cpu: 100m
+          limits:
+            memory: 50Mi
+            cpu: 200m
+        volumeMounts:
+        - name: root
+          readOnly:  true
+          mountPath: /host
+      tolerations:
+        - effect: NoSchedule
+          operator: Exists
+      volumes:
+      - name: root
+        hostPath:
+          path: /

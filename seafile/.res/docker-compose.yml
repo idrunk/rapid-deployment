@@ -1,0 +1,24 @@
+services:
+  seafile:
+    restart: unless-stopped
+    container_name: seafile
+    image: seafileltd/seafile-mc:11.0.12
+    environment:
+      DB_HOST: $MYSQL_HOST
+      DB_ROOT_PASSWD: $MYSQL_ROOT_PASS
+      SEAFILE_ADMIN_EMAIL: $SF_ADMIN_EMAIL
+      SEAFILE_ADMIN_PASSWORD: $SF_ADMIN_PASSWORD
+      SEAFILE_SERVER_LETSENCRYPT: "false"
+      SEAFILE_SERVER_HOSTNAME: $LOCAL_HOST_IP4:$SF_PORT
+      TIME_ZONE: Asia/Shanghai
+    ports:
+      - '$SF_PORT:80'
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./seafile:/shared
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

@@ -1,0 +1,28 @@
+services:
+  mysql80:
+    restart: unless-stopped
+    image: mysql:8.0
+    container_name: mysql80
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - $MYSQL_PORT:3306
+    networks:
+      - zwnet
+  adminer:
+    restart: unless-stopped
+    image: adminer:4-standalone
+    container_name: adminer
+    environment:
+      ADMINER_DESIGN: nette
+    ports:
+      - $ADMINER_PORT:8080
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

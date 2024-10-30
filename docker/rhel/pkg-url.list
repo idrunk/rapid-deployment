@@ -1,0 +1,8 @@
+container-selinux           https://mirrors.cloud.tencent.com/almalinux/9.4/AppStream/x86_64/os/Packages/container-selinux-2.229.0-1.el9_3.noarch.rpm
+containerd.io               https://download.docker.com/linux/centos/9/x86_64/stable/Packages/containerd.io-1.7.19-3.1.el9.x86_64.rpm
+docker-ce                   https://download.docker.com/linux/centos/9/x86_64/stable/Packages/docker-ce-27.1.1-1.el9.x86_64.rpm
+docker-ce-cli               https://download.docker.com/linux/centos/9/x86_64/stable/Packages/docker-ce-cli-27.1.1-1.el9.x86_64.rpm
+docker-ce-rootless-extras   https://download.docker.com/linux/centos/9/x86_64/stable/Packages/docker-ce-rootless-extras-27.1.1-1.el9.x86_64.rpm
+docker-compose-plugin       https://download.docker.com/linux/centos/9/x86_64/stable/Packages/docker-compose-plugin-2.29.1-1.el9.x86_64.rpm
+docker-buildx-plugin        https://download.docker.com/linux/centos/9/x86_64/stable/Packages/docker-buildx-plugin-0.16.1-1.el9.x86_64.rpm
+docker-scan-plugin          https://download.docker.com/linux/centos/9/x86_64/stable/Packages/docker-scan-plugin-0.23.0-3.el9.x86_64.rpm

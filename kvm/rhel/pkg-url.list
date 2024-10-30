@@ -1,0 +1,3 @@
+qemu-kvm                    https://mirrors.cloud.tencent.com/almalinux/9.4/AppStream/x86_64/os/Packages/qemu-kvm-8.2.0-11.el9_4.4.x86_64.rpm
+libvirt                     https://mirrors.cloud.tencent.com/almalinux/9.4/AppStream/x86_64/os/Packages/libvirt-10.0.0-6.6.el9_4.alma.1.x86_64.rpm
+virt-install                https://mirrors.cloud.tencent.com/almalinux/9.4/AppStream/x86_64/os/Packages/virt-install-4.1.0-5.el9.noarch.rpm

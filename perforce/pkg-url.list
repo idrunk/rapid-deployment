@@ -1,0 +1,4 @@
+helix-core-server           https://cdist2.perforce.com/perforce/r24.1/bin.linux26x86_64/helix-core-server.tgz
+p4vinst64                   https://cdist2.perforce.com/perforce/r24.1/bin.ntx64/p4vinst64.exe
+helix-core-server-win       https://cdist2.perforce.com/perforce/r24.1/bin.ntx64/helix-core-server-x64.exe
+helix-core-proxy-win        https://cdist2.perforce.com/perforce/r24.1/bin.ntx64/helix-core-proxy-x64.exe

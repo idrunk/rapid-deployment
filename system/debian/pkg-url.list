@@ -1,0 +1,8 @@
+acl
+cifs-utils
+nfs-kernel-server
+socat
+git
+cockpit-machines
+cockpit-identities          https://github.com/45Drives/cockpit-identities/releases/download/v0.1.12/cockpit-identities_0.1.12-1focal_all.deb
+cockpit-file-sharing        https://github.com/45Drives/cockpit-file-sharing/releases/download/v3.3.7/cockpit-file-sharing_3.3.7-1focal_all.deb

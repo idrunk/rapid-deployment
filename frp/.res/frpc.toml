@@ -1,0 +1,7 @@
+serverAddr = "{{ .Envs.FRP_SERVER_HOST }}"
+serverPort = {{ .Envs.FRP_SERVER_PORT }}
+auth.token = "{{ .Envs.FRP_TOKEN }}"
+transport.protocol = "quic"
+user = "{{ .Envs.FRP_USER }}"
+metadatas.token = "{{ .Envs.FRP_USER_PASS }}"
+includes = ["./conf.d/*.toml"]

@@ -1,0 +1,9 @@
+htop
+telnet
+traceroute
+cifs-utils                  https://mirrors.cloud.tencent.com/almalinux/9.4/BaseOS/x86_64/os/Packages/cifs-utils-7.0-1.el9.x86_64.rpm
+socat
+git
+cockpit-machines
+cockpit-identities          https://github.com/45Drives/cockpit-identities/releases/download/v0.1.12/cockpit-identities-0.1.12-1.el8.noarch.rpm
+cockpit-file-sharing        https://github.com/45Drives/cockpit-file-sharing/releases/download/v3.3.7/cockpit-file-sharing-3.3.7-1.el8.noarch.rpm

@@ -1,0 +1,51 @@
+scrape_configs:
+  - job_name: 'kube-state-metrics'
+    static_configs:
+      - targets:
+        - 10.100.101.11:8080
+  - job_name: 'kubernetes-nodes'
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    bearer_token_file: /etc/prometheus/kubernetes_token
+    kubernetes_sd_configs:
+    - role: node
+      api_server: "https://192.168.1.245:6443"
+      tls_config:
+        insecure_skip_verify: true
+      bearer_token_file: /etc/prometheus/kubernetes_token
+    relabel_configs:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.*)
+      - action: replace
+        regex: ^([^:]+)
+        source_labels: [ __address__ ]
+        target_label: __address__
+        replacement: $1:9090
+      - action: replace
+        source_labels: [ __scheme__ ]
+        target_label: __scheme__
+        replacement: http
+  - job_name: 'kubernetes-cadvisor'
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    bearer_token_file: /etc/prometheus/kubernetes_token
+    kubernetes_sd_configs:
+    - role: node
+      api_server: "https://192.168.1.245:6443"
+      tls_config:
+        insecure_skip_verify: true
+      bearer_token_file: /etc/prometheus/kubernetes_token
+    relabel_configs:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.*) 
+      - action: replace
+        source_labels: [ __address__ ]
+        target_label: __address__
+        replacement: 192.168.1.245:6443
+      - action: replace
+        source_labels: [ __meta_kubernetes_node_name ]
+        target_label: __metrics_path__
+        regex: .*
+        replacement: /api/v1/nodes/$0/proxy/metrics/cadvisor

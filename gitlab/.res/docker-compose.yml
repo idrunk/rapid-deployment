@@ -1,0 +1,21 @@
+services:
+  gitlab:
+    restart: unless-stopped
+    container_name: gitlab
+    image: gitlab/gitlab-ce:17.1.6-ce.0
+    environment:
+      TIME_ZONE: Asia/Shanghai
+      GITLAB_ROOT_PASSWORD: $GL_ROOT_PASSWD
+    ports:
+      - '$GL_SSH_PORT:22'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - './gitlab/config:/etc/gitlab'
+      - './gitlab/logs:/var/log/gitlab'
+      - './gitlab/data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

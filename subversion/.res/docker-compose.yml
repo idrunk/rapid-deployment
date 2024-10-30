@@ -1,0 +1,19 @@
+services:
+  svnadmin:
+    restart: unless-stopped
+    container_name: svnadmin
+    image: witersencom/svnadmin:2.5.9
+    hostname: svn.syy.pub
+    ports:
+      - $SA_WEB_PORT:80
+      - $SA_PORT:3690
+    volumes:
+      - ./svnadmin/app/:/var/www/html/
+      - ./svnadmin/data/:/home/svnadmin/
+      - ./svnadmin/conf.d/:/etc/httpd/conf.d/
+      - ./svnadmin/sasl2/:/etc/sasl2/
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

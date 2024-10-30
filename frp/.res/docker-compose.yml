@@ -1,0 +1,19 @@
+services:
+  frp:
+    container_name: frp
+    image: theanony/frp:0.60.0
+    restart: unless-stopped
+    environment:
+      - FRP_SERVER_HOST=$FRP_SERVER_HOST
+      - FRP_SERVER_PORT=$FRP_SERVER_PORT
+      - FRP_TOKEN=$FRP_TOKEN
+      - FRP_USER=$FRP_USER
+      - FRP_USER_PASS=$FRP_USER_PASS
+    volumes:
+      - ./frp/frpc.toml:/frp/config.toml
+      - ./frp/conf.d:/frp/conf.d
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

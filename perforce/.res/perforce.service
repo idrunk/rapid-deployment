@@ -1,0 +1,15 @@
+[Unit]
+Description=perforce: Helix Core Server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart="$INSTL_SUBJ_DIR/p4d" -r "$INSTL_SUBJ_DIR/data" -p $SERVICE_PORT -J journal -L log
+User=$SERVICE_USER
+Group=$SERVICE_USER
+Restart=always
+StartLimitInterval=0
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

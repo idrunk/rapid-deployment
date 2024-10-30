@@ -1,0 +1,8 @@
+registry.k8s.io/kube-apiserver:v1.30.3
+registry.k8s.io/kube-controller-manager:v1.30.3
+registry.k8s.io/kube-scheduler:v1.30.3
+registry.k8s.io/kube-proxy:v1.30.3
+registry.k8s.io/coredns/coredns:v1.11.1
+registry.k8s.io/pause:$K8S_PAUSE_VERSION
+registry.k8s.io/etcd:3.5.12-0
+docker.io/cloudnativelabs/kube-router:v2.2.0

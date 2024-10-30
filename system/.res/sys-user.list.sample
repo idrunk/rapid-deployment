@@ -1,0 +1,3 @@
+drunk:member,senior;login,sudo_nopass        drunk    "ssh-rsa 123456"
+jenny:member
+dev1:member,dev;login

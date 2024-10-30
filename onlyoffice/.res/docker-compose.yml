@@ -1,0 +1,57 @@
+services:
+  documentserver:
+    restart: unless-stopped
+    container_name: documentserver
+    image: onlyoffice/documentserver:8.1
+    environment:
+      JWT_ENABLED: "true"
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_HEADER: AuthorizationJwt
+    volumes:
+      - ./documentserver/data:/var/www/onlyoffice/Data
+      - ./documentserver/logs:/var/log/onlyoffice
+      - ./documentserver/fonts:/usr/share/fonts/truetype/custom
+      - ./documentserver/forgotten:/var/lib/onlyoffice/documentserver/App_Data/cache/files/forgotten
+    networks:
+      - zwnet
+  controlpanel:
+    restart: unless-stopped
+    container_name: controlpanel
+    image: onlyoffice/controlpanel:3.5.2.530
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./communityserver/data:/app/onlyoffice/CommunityServer/data
+      - ./controlpanel/data:/var/www/onlyoffice/Data
+      - ./controlpanel/logs:/var/log/onlyoffice
+    networks:
+      - zwnet
+  communityserver:
+    restart: unless-stopped
+    container_name: communityserver
+    image: onlyoffice/communityserver:12.6.0.1900
+    privileged: true
+    cgroup: host
+    environment:
+      MYSQL_SERVER_HOST: mysql80
+      MYSQL_SERVER_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
+      MYSQL_SERVER_DB_NAME: onlyoffice
+      MYSQL_SERVER_USER: ${OO_DB_USER}
+      MYSQL_SERVER_PASS: ${OO_DB_PASS}
+      DOCUMENT_SERVER_PORT_80_TCP_ADDR: documentserver
+      DOCUMENT_SERVER_JWT_ENABLED: "true"
+      DOCUMENT_SERVER_JWT_SECRET: ${JWT_SECRET}
+      DOCUMENT_SERVER_JWT_HEADER: AuthorizationJwt
+      CONTROL_PANEL_PORT_80_TCP: 80
+      CONTROL_PANEL_PORT_80_TCP_ADDR: controlpanel
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - ./communityserver/data:/var/www/onlyoffice/Data
+      - ./communityserver/logs:/var/log/onlyoffice
+      - ./communityserver/letsencrypt:/etc/letsencrypt
+    ports:
+      - $OO_PORT:80
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

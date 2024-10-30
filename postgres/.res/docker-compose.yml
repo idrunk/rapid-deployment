@@ -1,0 +1,29 @@
+services:
+  postgres:
+    restart: unless-stopped
+    container_name: postgres
+    image: postgres:16-alpine
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    ports:
+      - '$POSTGRES_PORT:5432'
+    volumes:
+      - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres/data/:/var/lib/postgresql/data/
+      - ./postgres/initdb.d/:/docker-entrypoint-initdb.d/
+    networks:
+      - zwnet
+  pgweb:
+    restart: unless-stopped
+    container_name: pgweb
+    image: sosedoff/pgweb:0.15.0
+    environment:
+      - PGWEB_DATABASE_URL=postgres://postgres:$POSTGRES_PASSWORD@postgres:5432/postgres?sslmode=disable
+    ports: 
+      - "$PGWEB_PORT:8081"
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

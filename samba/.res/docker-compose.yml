@@ -1,0 +1,19 @@
+services:
+  samba:
+    restart: unless-stopped
+    container_name: samba
+    image: crazymax/samba:4.19.6
+    ports:
+      - 445:445
+      - 139:139
+      - $SMB_ND_TCP_PORT:445
+      - $SMB_ND_NETBIOS_PORT:139
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./samba/config.yml:/data/config.yml
+      - $SHARE_ROOT:/share
+      - $SHARE_USER_ROOT:/share/users
+networks:
+  zwnet:
+    external: true

@@ -1,0 +1,21 @@
+services:
+  nextcloud:
+    restart: unless-stopped
+    image: nextcloud:29-fpm-alpine
+    container_name: nextcloud
+    environment:
+      MYSQL_HOST: $MYSQL_HOST
+      MYSQL_DATABASE: $NC_DB_NAME
+      MYSQL_PASSWORD: $NC_DB_PASS
+      MYSQL_USER: $NC_DB_USER
+      NEXTCLOUD_ADMIN_USER: $NC_ADMIN_USER
+      NEXTCLOUD_ADMIN_PASSWORD: $NC_ADMIN_PASSWORD
+      NEXTCLOUD_TRUSTED_DOMAINS: $NC_TRUSTED_DOMAINS
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./nextcloud:/var/www/html
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

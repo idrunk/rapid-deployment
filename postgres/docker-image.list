@@ -1,0 +1,2 @@
+postgres:16-alpine
+sosedoff/pgweb:0.15.0

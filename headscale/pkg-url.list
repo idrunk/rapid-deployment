@@ -1,0 +1,4 @@
+headscale           https://github.com/juanfont/headscale/releases/download/v0.23.0-rc.1/headscale_0.23.0-rc.1_linux_amd64
+tailscale           https://pkgs.tailscale.com/stable/tailscale_1.74.1_amd64.tgz
+https://pkgs.tailscale.com/stable/tailscale-setup-full-1.74.0.exe
+https://pkgs.tailscale.com/stable/tailscale-android-universal-1.74.1.apk

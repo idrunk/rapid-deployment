@@ -1,0 +1,25 @@
+services:
+  gitea:
+    restart: unless-stopped
+    container_name: gitea
+    image: gitea/gitea:1.22
+    environment:
+      TIME_ZONE: Asia/Shanghai
+      GITEA__database__DB_TYPE: mysql
+      GITEA__database__HOST: $GT_DB_HOST:3306
+      GITEA__database__NAME: $GT_DB_NAME
+      GITEA__database__USER: $GT_DB_USER
+      GITEA__database__PASSWD: $GT_DB_PASSWD
+      GITEA__server__DOMAIN: $GT_WEB_HOST
+      GITEA__server__HTTP_PORT: $GT_WEB_PORT
+      GITEA__server__SSH_PORT: $GT_SSH_PORT
+    ports:
+      - '$GT_SSH_PORT:22'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./gitea:/data
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

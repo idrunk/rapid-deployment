@@ -1,0 +1,16 @@
+services:
+  homeassistant:
+    restart: unless-stopped
+    container_name: homeassistant
+    image: homeassistant/home-assistant:2024.9
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+      - ./homeassistant:/config
+    ports:
+      - '$HA_WEB_PORT:8123'
+    networks:
+      - zwnet
+networks:
+  zwnet:
+    external: true

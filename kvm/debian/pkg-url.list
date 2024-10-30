@@ -1,0 +1,6 @@
+qemu-kvm                    https://mirrors.cloud.tencent.com/debian/pool/main/q/qemu/qemu-kvm_3.1%2bdfsg-8%2bdeb10u8_amd64.deb
+libvirt-daemon-system       https://mirrors.cloud.tencent.com/debian/pool/main/libv/libvirt/libvirt-daemon-system_10.6.0-1_amd64.deb
+libvirt-daemon              https://mirrors.cloud.tencent.com/debian/pool/main/libv/libvirt/libvirt-daemon_10.6.0-1_amd64.deb
+virtinst                    https://mirrors.cloud.tencent.com/debian/pool/main/v/virt-manager/virtinst_4.1.0-4_all.deb
+bridge-utils                https://mirrors.cloud.tencent.com/debian/pool/main/b/bridge-utils/bridge-utils_1.7.1-2_amd64.deb
+libosinfo-bin               https://mirrors.cloud.tencent.com/debian/pool/main/libo/libosinfo/libosinfo-bin_1.11.0-2%2bb1_amd64.deb

@@ -1,0 +1,29 @@
+{
+	skip_install_trust
+	auto_https disable_redirects
+	http_port {$HTTP_PORT}
+	https_port {$HTTPS_PORT}
+}
+
+(common) {
+	redir / /web
+	handle /web* {
+		uri strip_prefix /web
+		file_server {
+			root /web
+		}
+	}
+}
+
+:{$HTTP_PORT} {
+	import common
+	reverse_proxy headscale:{$HTTP_PORT}
+}
+
+:{$HTTPS_PORT} {
+	tls internal {
+		on_demand
+	}
+	import common
+	reverse_proxy headscale:{$HTTPS_PORT}
+}

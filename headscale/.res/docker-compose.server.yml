@@ -1,0 +1,33 @@
+services:
+  headscale:
+    restart: unless-stopped
+    container_name: headscale
+    image: headscale/headscale:v0.23
+    ports:
+      - $HEADSCALE_METRICS_PORT:9090
+      - $HEADSCALE_GRPC_PORT:50443
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./headscale/config:/etc/headscale
+      - ./headscale/data:/var/lib/headscale
+    command: serve
+  headscale-ui:
+    restart: unless-stopped
+    container_name: headscale-ui
+    image: ghcr.io/gurucomputing/headscale-ui:2024.10.05
+    ports:
+      # - 8443:8443
+      - $HEADSCALE_SERVER_PORT:8080
+    volumes:
+      - ./caddy:/data
+  # derper:
+  #   restart: unless-stopped
+  #   container_name: derper
+  #   image: fredliang/derper:208878d628c7c6cad604da7798b6deee3894c7a6
+  #   ports:
+  #     - 3478:3478
+  #   environment:
+  #     - DERP_DOMAIN=derper.example.com
+  #     - DERP_ADDR=:16443
+  #     - DERP_HTTP_PORT=-1
+  #     - DERP_VERIFY_CLIENT_URL=""

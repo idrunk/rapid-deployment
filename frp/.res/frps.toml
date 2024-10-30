@@ -1,0 +1,12 @@
+bindPort = {{ .Envs.FRP_SERVER_PORT }}
+quicBindPort = {{ .Envs.FRP_SERVER_PORT }}
+auth.token = "{{ .Envs.FRP_TOKEN }}"
+webServer.addr = "0.0.0.0"
+webServer.port = {{ .Envs.FRP_SERVER_WEB_PORT }}
+webServer.user = "{{ .Envs.FRP_SERVER_WEB_USER }}"
+webServer.password = "{{ .Envs.FRP_SERVER_WEB_PASSWORD }}"
+
+[[httpPlugins]]
+addr = "fpmu:7200"
+path = "/handler"
+ops = ["Login"]

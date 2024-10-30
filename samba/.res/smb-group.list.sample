@@ -1,0 +1,3 @@
+company     member:rx;senior:rwx
+senior      senior:rwx
+dev         dev:rwx
